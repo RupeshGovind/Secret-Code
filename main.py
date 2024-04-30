@@ -1,14 +1,39 @@
-import time
-timestamp1 =time.strftime("%H:%M:%S")
-print(timestamp1)
+import random
+import string
+def rand0m1():
+    character = string.ascii_lowercase
+    return random.choices(character,k=3)
+RANDOM1 = ("".join(rand0m1()))
 
-timestamp2 = int(time.strftime("%H"))
+def rand0m2():
+    character = string.ascii_lowercase
+    return random.choices(character,k=3)
+RANDOM2 = ("".join(rand0m2()))
 
-if timestamp2 >= 00 and timestamp2 < 12:
-    print("Good Morning sir")
-elif timestamp2 >= 12 and timestamp2 < 16:
-    print("Good Afternoon sir")
-elif timestamp2 >= 16 and timestamp2 < 20:
-    print("Good Evening Sir")
+msg = input("Type your message_____")
+words = msg.split()
+coding = input("1 for Coding or 0 for Decoding___")
+coding = True if (coding=="1") else False
+
+if (coding):
+    nwords =[]
+    a = RANDOM1
+    b = RANDOM2
+    for word in words:
+        if len(word) >=3:
+            secret = a + word[1:] + word[0] + b
+            nwords.append(secret)
+        else:
+            nwords.append(word[::-1])
+    print(" ".join(nwords))
+
 else:
-    print("Good night sir")
+    nwords = []
+    for word in words:
+        if len(word)>3:
+          secret = word[3:-3]
+          secret = secret[-1]+ secret[:-1]
+          nwords.append(secret)
+        else:
+            nwords.append(word[::-1])
+    print(" ".join(nwords))
